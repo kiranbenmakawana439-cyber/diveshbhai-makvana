@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Profile</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>👤 Student Profile</h1>
+<p>12th Commerce Study Hub</p>
+</header>
+
+<section class="hero">
+
+<h2 id="title">Welcome Student</h2>
+
+<img id="preview"
+src="https://via.placeholder.com/150"
+width="150"
+height="150"
+style="border-radius:50%;border:3px solid #0077ff;">
+
+<br><br>
+
+<input type="file" id="photo" accept="image/*">
+
+<br><br>
+
+<button onclick="uploadPhoto()">📷 Upload Photo</button>
+
+<hr><br>
+
+<button onclick="english()">🇬🇧 English</button>
+<button onclick="gujarati()">🇮🇳 ગુજરાતી</button>
+
+<hr><br>
+
+<button onclick="notifyUser()">🔔 Show Notification</button>
+
+<p id="msg"></p>
+
+</section>
+
+<script>
+function uploadPhoto(){
+const file=document.getElementById("photo").files[0];
+
+if(file){
+document.getElementById("preview").src=
+URL.createObjectURL(file);
+}
+}
+
+function english(){
+document.getElementById("title").innerHTML=
+"Welcome Student";
+}
+
+function gujarati(){
+document.getElementById("title").innerHTML=
+"વિદ્યાર્થીનું સ્વાગત છે";
+}
+
+function notifyUser(){
+document.getElementById("msg").innerHTML=
+"✅ New Notes Available!";
+}
+</script>
+
+</body>
+</html>
