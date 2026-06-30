@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Achievements</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.container{
+max-width:900px;
+margin:30px auto;
+padding:20px;
+}
+
+.badge{
+background:#fff;
+padding:20px;
+margin:15px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+text-align:center;
+}
+
+.progress{
+height:20px;
+background:#ddd;
+border-radius:10px;
+overflow:hidden;
+margin-top:10px;
+}
+
+.progress div{
+height:100%;
+width:80%;
+background:#4CAF50;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#0077ff;
+color:white;
+cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🏆 Achievements</h1>
+<p>Earn Badges While Learning</p>
+</header>
+
+<div class="container">
+
+<div class="badge">
+<h2>🥇 Top Learner</h2>
+<p>Complete 10 quizzes.</p>
+</div>
+
+<div class="badge">
+<h2>📘 Notes Master</h2>
+<p>Read 20 study notes.</p>
+</div>
+
+<div class="badge">
+<h2>🔥 7-Day Streak</h2>
+<p>Study for 7 days in a row.</p>
+</div>
+
+<div class="badge">
+<h2>📊 Study Progress</h2>
+
+<div class="progress">
+<div id="bar"></div>
+</div>
+
+<p id="progressText">80%</p>
+
+</div>
+
+<div class="badge">
+
+<h2>🎖 Claim Reward</h2>
+
+<button onclick="claimReward()">
+Claim Badge
+</button>
+
+<p id="reward"></p>
+
+</div>
+
+</div>
+
+<script>
+
+let progress =
+localStorage.getItem("progress") || 80;
+
+document.getElementById("bar").style.width =
+progress + "%";
+
+document.getElementById("progressText").innerHTML =
+progress + "% Completed";
+
+function claimReward(){
+
+document.getElementById("reward").innerHTML =
+"🎉 Congratulations! Badge Unlocked.";
+
+}
+
+</script>
+
+</body>
+</html>
