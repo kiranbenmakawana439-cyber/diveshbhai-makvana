@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCQ Quiz - 12th Commerce Study Hub</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.quiz{
+max-width:700px;
+margin:40px auto;
+padding:20px;
+background:white;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+.quiz h2{
+margin-bottom:20px;
+}
+.quiz label{
+display:block;
+margin:10px 0;
+font-size:18px;
+}
+.result{
+font-size:22px;
+font-weight:bold;
+margin-top:20px;
+color:green;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<h1>📝 MCQ Quiz</h1>
+<p>12th Commerce Study Hub</p>
+</header>
+
+<section class="quiz">
+
+<h2>1. Which account is debited when cash comes into the business?</h2>
+
+<label><input type="radio" name="q1" value="a"> Cash Account</label>
+<label><input type="radio" name="q1" value="b"> Sales Account</label>
+<label><input type="radio" name="q1" value="c"> Purchase Account</label>
+
+<hr>
+
+<h2>2. Economics is mainly divided into?</h2>
+
+<label><input type="radio" name="q2" value="a"> Micro & Macro Economics</label>
+<label><input type="radio" name="q2" value="b"> Banking & Finance</label>
+<label><input type="radio" name="q2" value="c"> None</label>
+
+<hr>
+
+<h2>3. HTML stands for?</h2>
+
+<label><input type="radio" name="q3" value="a"> Hyper Text Markup Language</label>
+<label><input type="radio" name="q3" value="b"> High Text Machine Language</label>
+<label><input type="radio" name="q3" value="c"> Home Tool Markup Language</label>
+
+<br><br>
+
+<button onclick="checkQuiz()">Submit Quiz</button>
+
+<div class="result" id="result"></div>
+
+</section>
+
+<script>
+function checkQuiz(){
+
+let score=0;
+
+if(document.querySelector('input[name="q1"]:checked')?.value=="a")
+score++;
+
+if(document.querySelector('input[name="q2"]:checked')?.value=="a")
+score++;
+
+if(document.querySelector('input[name="q3"]:checked')?.value=="a")
+score++;
+
+document.getElementById("result").innerHTML=
+"🎉 Your Score: "+score+" / 3";
+
+}
+</script>
+
+</body>
+</html>
