@@ -1,0 +1,87 @@
+// 🌙 Dark Mode
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
+}
+
+// Load Theme
+window.onload = function () {
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+    }
+};
+
+// 🔍 Search Subjects
+function searchSubjects() {
+    let input = document.getElementById("searchBox").value.toLowerCase();
+    let cards = document.getElementsByClassName("card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let txt = cards[i].innerText.toLowerCase();
+        cards[i].style.display =
+            txt.includes(input) ? "block" : "none";
+    }
+}
+
+// 📱 Install App Button
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+});
+
+function installApp() {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+    } else {
+        alert("Install option is not available on this device/browser.");
+    }
+}
+      .dark{
+background:#121212;
+color:white;
+}
+
+.dark header{
+background:#1f1f1f;
+}
+
+.dark nav{
+background:#000;
+}
+
+.dark .card{
+background:#222;
+color:white;
+}
+
+.search-box{
+width:80%;
+max-width:500px;
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+margin:20px;
+}
+      <input
+type="text"
+id="searchBox"
+class="search-box"
+placeholder="🔍 Search Subjects..."
+onkeyup="searchSubjects()">
+
+<br>
+
+<button onclick="toggleTheme()">
+🌙 Dark / Light Mode
+</button>
+
+<button onclick="installApp()">
+📱 Install App
+</button>
