@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Study Assistant</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>🤖 AI Study Assistant</h1>
+<p>12th Commerce Study Hub</p>
+</header>
+
+<nav>
+<a href="index.html">🏠 Home</a>
+<a href="dashboard.html">📊 Dashboard</a>
+<a href="notes.html">📚 Notes</a>
+<a href="mcq.html">📝 Quiz</a>
+</nav>
+
+<section class="hero">
+
+<h2>Ask a Study Question</h2>
+
+<input
+type="text"
+id="question"
+placeholder="Example: What is Journal Entry?"
+style="width:80%;padding:12px;">
+
+<br><br>
+
+<button onclick="answerQuestion()">Ask</button>
+
+<h3 id="answer"></h3>
+
+<hr><br>
+
+<h2>📅 Exam Reminder</h2>
+
+<input type="date" id="examDate">
+
+<br><br>
+
+<button onclick="saveExam()">Save Exam Date</button>
+
+<p id="examMsg"></p>
+
+</section>
+
+<script>
+
+function answerQuestion(){
+
+const q=document.getElementById("question").value.toLowerCase();
+
+let ans="Sorry, I don't know the answer yet.";
+
+if(q.includes("journal")){
+ans="Journal Entry is the first step of recording business transactions.";
+}
+
+if(q.includes("economics")){
+ans="Economics studies how people use resources to satisfy their needs.";
+}
+
+if(q.includes("account")){
+ans="Accountancy records, classifies and summarizes financial transactions.";
+}
+
+document.getElementById("answer").innerHTML=ans;
+
+}
+
+function saveExam(){
+
+const date=document.getElementById("examDate").value;
+
+localStorage.setItem("examDate",date);
+
+document.getElementById("examMsg").innerHTML=
+"✅ Exam date saved successfully!";
+
+}
+
+window.onload=function(){
+
+const saved=localStorage.getItem("examDate");
+
+if(saved){
+
+document.getElementById("examMsg").innerHTML=
+"📅 Saved Exam Date: "+saved;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
