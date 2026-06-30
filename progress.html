@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Progress</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.progress-box{
+max-width:700px;
+margin:30px auto;
+padding:20px;
+background:white;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+text-align:center;
+}
+
+.bar{
+width:100%;
+height:25px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+margin-top:10px;
+}
+
+.fill{
+height:100%;
+width:75%;
+background:#28a745;
+}
+
+.card{
+margin-top:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>📊 Student Progress</h1>
+<p>Track Your Learning</p>
+</header>
+
+<div class="progress-box">
+
+<h2>Overall Progress</h2>
+
+<div class="bar">
+<div class="fill"></div>
+</div>
+
+<p><b>75% Completed</b></p>
+
+<hr><br>
+
+<h2>🔥 Daily Streak</h2>
+
+<h1 id="streak">1 Day</h1>
+
+<button onclick="increaseStreak()">
+Increase Streak
+</button>
+
+<hr><br>
+
+<h2>🎯 Daily Goal</h2>
+
+<input
+type="text"
+id="goal"
+placeholder="Example: Finish Chapter 2">
+
+<br><br>
+
+<button onclick="saveGoal()">
+Save Goal
+</button>
+
+<p id="goalText"></p>
+
+<hr><br>
+
+<h2>🏅 Performance</h2>
+
+<p>Quiz Score : <b>85%</b></p>
+
+<p>Assignments : <b>12 Completed</b></p>
+
+<p>Attendance : <b>96%</b></p>
+
+</div>
+
+<script>
+
+let streak=
+Number(localStorage.getItem("streak"))||1;
+
+document.getElementById("streak").innerHTML=
+streak+" Day";
+
+function increaseStreak(){
+
+streak++;
+
+localStorage.setItem("streak",streak);
+
+document.getElementById("streak").innerHTML=
+streak+" Days";
+
+}
+
+function saveGoal(){
+
+let goal=document.getElementById("goal").value;
+
+localStorage.setItem("goal",goal);
+
+document.getElementById("goalText").innerHTML=
+"🎯 "+goal;
+
+}
+
+document.getElementById("goalText").innerHTML=
+"🎯 "+
+(localStorage.getItem("goal")||"No Goal Yet");
+
+</script>
+
+</body>
+</html>
