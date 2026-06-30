@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>🏆 Student Leaderboard</h1>
+<p>12th Commerce Study Hub</p>
+</header>
+
+<nav>
+<a href="index.html">🏠 Home</a>
+<a href="dashboard.html">📊 Dashboard</a>
+<a href="mcq.html">📝 Quiz</a>
+<a href="planner.html">📅 Planner</a>
+</nav>
+
+<section class="subjects">
+
+<div class="card">
+<h2>🥇 Rank 1</h2>
+<p>Kiran</p>
+<p>Score: 95%</p>
+</div>
+
+<div class="card">
+<h2>🥈 Rank 2</h2>
+<p>Student 2</p>
+<p>Score: 91%</p>
+</div>
+
+<div class="card">
+<h2>🥉 Rank 3</h2>
+<p>Student 3</p>
+<p>Score: 88%</p>
+</div>
+
+</section>
+
+<section class="hero">
+
+<h2>🎖️ Certificate</h2>
+
+<p>Congratulations for completing your quiz!</p>
+
+<button onclick="downloadCertificate()">
+📄 Download Certificate
+</button>
+
+<hr><br>
+
+<h2>📊 Quiz History</h2>
+
+<p id="history">No quiz attempted yet.</p>
+
+</section>
+
+<script>
+const score = localStorage.getItem("quizScore");
+
+if(score){
+document.getElementById("history").innerHTML =
+"Last Quiz Score: " + score + "%";
+}
+
+function downloadCertificate(){
+
+const studentName = prompt("Enter Your Name");
+
+if(studentName){
+alert(
+"🎉 Congratulations " +
+studentName +
+"! Your certificate is ready."
+);
+}
+
+}
+</script>
+
+</body>
+</html>
