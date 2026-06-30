@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Chat</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>💬 Student Help Center</h1>
+<p>12th Commerce Study Hub</p>
+</header>
+
+<nav>
+<a href="index.html">🏠 Home</a>
+<a href="assistant.html">🤖 AI Assistant</a>
+<a href="contact.html">📞 Contact</a>
+</nav>
+
+<section class="hero">
+
+<h2>💬 Live Chat</h2>
+
+<div id="chatBox" style="height:300px;border:1px solid #ccc;padding:10px;overflow:auto;background:#fff;text-align:left;">
+<p><b>Bot:</b> 👋 Welcome! Ask your study question.</p>
+</div>
+
+<br>
+
+<input
+type="text"
+id="message"
+placeholder="Type your message..."
+style="width:80%;padding:10px;">
+
+<button onclick="sendMessage()">Send</button>
+
+<br><br>
+
+<button onclick="showNotification()">🔔 Show Notification</button>
+
+<br><br>
+
+<a href="https://translate.google.com" target="_blank">
+<button>🌍 Open Google Translate</button>
+</a>
+
+</section>
+
+<script>
+
+function sendMessage(){
+
+const input=document.getElementById("message");
+
+const chat=document.getElementById("chatBox");
+
+if(input.value==="") return;
+
+chat.innerHTML += "<p><b>You:</b> "+input.value+"</p>";
+
+chat.innerHTML += "<p><b>Bot:</b> Thanks! Keep studying every day. 📚</p>";
+
+input.value="";
+
+chat.scrollTop=chat.scrollHeight;
+
+}
+
+function showNotification(){
+
+if(Notification.permission==="granted"){
+
+new Notification("📚 New Study Material Available!");
+
+}else if(Notification.permission!=="denied"){
+
+Notification.requestPermission().then(permission=>{
+
+if(permission==="granted"){
+
+new Notification("📚 New Study Material Available!");
+
+}
+
+});
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
