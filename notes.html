@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Notes</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>📚 Study Notes</h1>
+<p>Read Notes Online & Download PDFs</p>
+</header>
+
+<nav>
+<a href="index.html">🏠 Home</a>
+<a href="dashboard.html">📊 Dashboard</a>
+<a href="accountancy.html">📘 Accountancy</a>
+<a href="economics.html">📗 Economics</a>
+<a href="contact.html">📞 Contact</a>
+</nav>
+
+<section class="hero">
+
+<h2>📘 Accountancy Notes</h2>
+
+<iframe
+src="accountancy-notes.pdf"
+width="100%"
+height="600">
+</iframe>
+
+<br><br>
+
+<a href="accountancy-notes.pdf" download>
+<button>📥 Download PDF</button>
+</a>
+
+<button onclick="bookmarkNote()">
+⭐ Bookmark
+</button>
+
+<p id="msg"></p>
+
+</section>
+
+<script>
+function bookmarkNote(){
+localStorage.setItem(
+"bookmark",
+"Accountancy Notes"
+);
+
+document.getElementById("msg").innerHTML =
+"✅ Bookmark Saved!";
+}
+</script>
+
+</body>
+</html>
