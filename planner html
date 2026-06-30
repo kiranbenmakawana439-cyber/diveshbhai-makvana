@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Planner</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>📅 Study Planner</h1>
+<p>Plan Your Daily Study</p>
+</header>
+
+<section class="hero">
+
+<h2>📝 Today's Study Plan</h2>
+
+<textarea id="plan" rows="6" cols="40"
+placeholder="Write today's study plan..."></textarea>
+
+<br><br>
+
+<button onclick="savePlan()">💾 Save Plan</button>
+
+<p id="savedPlan"></p>
+
+<hr>
+
+<h2>⏰ Study Timer</h2>
+
+<h1 id="timer">00:00</h1>
+
+<button onclick="startTimer()">▶ Start</button>
+<button onclick="stopTimer()">⏹ Stop</button>
+
+<hr>
+
+<h2>🎯 Exam Countdown</h2>
+
+<h3 id="countdown"></h3>
+
+</section>
+
+<script>
+function savePlan(){
+let plan=document.getElementById("plan").value;
+localStorage.setItem("studyPlan",plan);
+document.getElementById("savedPlan").innerHTML="✅ Plan Saved";
+}
+
+document.getElementById("savedPlan").innerHTML=
+localStorage.getItem("studyPlan") || "";
+
+let sec=0;
+let interval;
+
+function startTimer(){
+interval=setInterval(()=>{
+sec++;
+let min=Math.floor(sec/60);
+let s=sec%60;
+
+document.getElementById("timer").innerHTML=
+String(min).padStart(2,"0")+":"+
+String(s).padStart(2,"0");
+
+},1000);
+}
+
+function stopTimer(){
+clearInterval(interval);
+}
+
+const examDate=new Date("March 1, 2027").getTime();
+
+setInterval(()=>{
+const now=new Date().getTime();
+
+const gap=examDate-now;
+
+const days=Math.floor(
+gap/(1000*60*60*24)
+);
+
+document.getElementById("countdown").innerHTML=
+days+" Days Left";
+},1000);
+</script>
+
+</body>
+</html>
