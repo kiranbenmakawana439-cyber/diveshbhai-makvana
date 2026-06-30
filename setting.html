@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>⚙️ Settings</h1>
+<p>12th Commerce Study Hub</p>
+</header>
+
+<nav>
+<a href="index.html">🏠 Home</a>
+<a href="dashboard.html">📊 Dashboard</a>
+<a href="profile.html">👤 Profile</a>
+</nav>
+
+<section class="hero">
+
+<h2>🎨 Theme</h2>
+
+<button onclick="lightMode()">☀️ Light Mode</button>
+<button onclick="darkMode()">🌙 Dark Mode</button>
+
+<hr><br>
+
+<h2>📈 Study Progress</h2>
+
+<progress value="75" max="100"></progress>
+
+<p>75% Course Completed</p>
+
+<hr><br>
+
+<h2>🏅 Achievement Badges</h2>
+
+<p>🥇 Top Learner</p>
+<p>📘 Notes Master</p>
+<p>📝 Quiz Champion</p>
+
+<hr><br>
+
+<h2>💾 Save Settings</h2>
+
+<button onclick="saveSettings()">Save</button>
+
+<p id="status"></p>
+
+</section>
+
+<script>
+function lightMode(){
+document.body.style.background="#ffffff";
+document.body.style.color="#000000";
+localStorage.setItem("theme","light");
+}
+
+function darkMode(){
+document.body.style.background="#121212";
+document.body.style.color="#ffffff";
+localStorage.setItem("theme","dark");
+}
+
+function saveSettings(){
+document.getElementById("status").innerHTML =
+"✅ Settings Saved Successfully!";
+}
+
+window.onload=function(){
+const theme=localStorage.getItem("theme");
+
+if(theme==="dark"){
+document.body.style.background="#121212";
+document.body.style.color="#ffffff";
+}
+}
+</script>
+
+</body>
+</html>
