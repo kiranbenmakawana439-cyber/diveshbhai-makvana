@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel - Commerce Study Hub</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.admin-box{
+    max-width:700px;
+    margin:40px auto;
+    padding:25px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+
+.admin-box input,
+.admin-box select{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.file-list{
+    margin-top:30px;
+}
+
+.file-item{
+    background:#f5f5f5;
+    padding:15px;
+    margin:10px 0;
+    border-radius:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>⚙️ Admin Panel</h1>
+<p>12th Commerce Study Hub</p>
+</header>
+
+<nav>
+<a href="index.html">🏠 Home</a>
+<a href="dashboard.html">📊 Dashboard</a>
+<a href="accountancy.html">📘 Accountancy</a>
+<a href="economics.html">📗 Economics</a>
+</nav>
+
+<div class="admin-box">
+
+<h2>📚 Add Study Material</h2>
+
+<label>Subject</label>
+
+<select id="subject">
+<option>Accountancy</option>
+<option>Economics</option>
+<option>Business Administration</option>
+<option>Statistics</option>
+<option>English</option>
+</select>
+
+<label>Chapter / File Name</label>
+
+<input
+type="text"
+id="fileName"
+placeholder="Example: Accountancy Chapter 1">
+
+<label>Select PDF</label>
+
+<input
+type="file"
+id="pdfFile"
+accept=".pdf">
+
+<button onclick="addFile()">
+➕ Add Study Material
+</button>
+
+<div class="file-list">
+
+<h2>📁 Added Files</h2>
+
+<div id="fileList">
+No files added yet.
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function addFile(){
+
+let subject =
+document.getElementById("subject").value;
+
+let name =
+document.getElementById("fileName").value;
+
+let file =
+document.getElementById("pdfFile").files[0];
+
+if(!name || !file){
+
+alert("Please enter file name and select a PDF.");
+
+return;
+
+}
+
+let files =
+JSON.parse(localStorage.getItem("studyFiles")) || [];
+
+files.push({
+subject: subject,
+name: name,
+file: file.name
+});
+
+localStorage.setItem(
+"studyFiles",
+JSON.stringify(files)
+);
+
+document.getElementById("fileName").value="";
+document.getElementById("pdfFile").value="";
+
+showFiles();
+
+alert("✅ Study material added!");
+
+}
+
+function showFiles(){
+
+let files =
+JSON.parse(localStorage.getItem("studyFiles")) || [];
+
+let list =
+document.getElementById("fileList");
+
+if(files.length === 0){
+
+list.innerHTML="No files added yet.";
+
+return;
+
+}
+
+list.innerHTML="";
+
+files.forEach(function(item){
+
+list.innerHTML += `
+<div class="file-item">
+
+<h3>📄 ${item.name}</h3>
+
+<p>📚 Subject: ${item.subject}</p>
+
+<p>📁 File: ${item.file}</p>
+
+</div>
+`;
+
+});
+
+}
+
+showFiles();
+
+</script>
+
+</body>
+</html>
