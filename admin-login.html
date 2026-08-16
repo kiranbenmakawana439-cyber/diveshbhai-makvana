@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>🔐 Admin Login</h1>
+<p>12th Commerce Study Hub</p>
+</header>
+
+<section class="hero">
+
+<input
+type="email"
+id="email"
+placeholder="Admin Email"
+>
+
+<br><br>
+
+<input
+type="password"
+id="password"
+placeholder="Password"
+>
+
+<br><br>
+
+<button onclick="adminLogin()">
+🔑 Login
+</button>
+
+<p id="message"></p>
+
+</section>
+
+<script type="module">
+
+import { auth } from "./firebase-config.js";
+
+import {
+signInWithEmailAndPassword
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+window.adminLogin = async function(){
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+window.location.href =
+"admin-dashboard.html";
+
+}catch(error){
+
+document.getElementById("message").innerHTML =
+"❌ Login failed.";
+
+}
+
+};
+
+</script>
+
+</body>
+</html>
