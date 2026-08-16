@@ -81,6 +81,82 @@
 </footer>
 
 <script src="script.js"></script>
+  
+<script type="module">
 
+import { auth, db }
+from "./firebase-config.js";
+
+import {
+    doc,
+    getDoc
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+auth.onAuthStateChanged(async (user) => {
+
+    if (!user) {
+        document.getElementById("onlineScore").innerHTML =
+            "Please Login";
+        return;
+    }
+
+    const snap = await getDoc(
+        doc(db, "students", user.uid)
+    );
+
+    if (snap.exists()) {
+
+        const data = snap.data();
+
+        document.getElementById("onlineScore").innerHTML =
+            data.percentage + "%";
+
+    } else {
+
+        document.getElementById("onlineScore").innerHTML =
+            "No Quiz Yet";
+
+    }
+
+});
+
+</script>
+  
 </body>
 </html>
+function checkQuiz(){
+
+    let score = 0;
+
+    if(
+        document.querySelector(
+            'input[name="q1"]:checked'
+        )?.value === "a"
+    ){
+        score++;
+    }
+
+    if(
+        document.querySelector(
+            'input[name="q2"]:checked'
+        )?.value === "a"
+    ){
+        score++;
+    }
+
+    if(
+        document.querySelector(
+            'input[name="q3"]:checked'
+        )?.value === "a"
+    ){
+        score++;
+    }
+
+    document.getElementById("result").innerHTML =
+        "🎉 Your Score: " + score + " / 3";
+
+    saveResult(score, 3);
+}
+
+
