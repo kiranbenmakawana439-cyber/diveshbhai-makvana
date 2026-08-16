@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Profile</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>👤 Student Profile</h1>
+<p>12th Commerce Study Hub</p>
+</header>
+
+<nav>
+<a href="index.html">🏠 Home</a>
+<a href="dashboard.html">📊 Dashboard</a>
+<a href="progress.html">📈 Progress</a>
+</nav>
+
+<section class="hero">
+
+<h2>Welcome 👋</h2>
+
+<p>
+📧 Email:
+<b id="email">Loading...</b>
+</p>
+
+<p>
+📝 Latest Quiz:
+<b id="score">Loading...</b>
+</p>
+
+<br>
+
+<button onclick="logout()">
+🚪 Logout
+</button>
+
+<p id="message"></p>
+
+</section>
+
+<script type="module">
+
+import { auth, db }
+from "./firebase-config.js";
+
+import {
+onAuthStateChanged,
+signOut
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+doc,
+getDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        window.location.href =
+        "firebase-login.html";
+
+        return;
+    }
+
+    document.getElementById("email")
+    .innerHTML = user.email;
+
+    const studentRef =
+    doc(db, "students", user.uid);
+
+    const snapshot =
+    await getDoc(studentRef);
+
+    if (snapshot.exists()) {
+
+        const data =
+        snapshot.data();
+
+        document.getElementById("score")
+        .innerHTML =
+        (data.percentage || 0) + "%";
+
+    } else {
+
+        document.getElementById("score")
+        .innerHTML =
+        "No Quiz Yet";
+
+    }
+
+});
+
+
+window.logout = async function(){
+
+    await signOut(auth);
+
+    window.location.href =
+    "firebase-login.html";
+
+};
+
+</script>
+
+</body>
+</html>
