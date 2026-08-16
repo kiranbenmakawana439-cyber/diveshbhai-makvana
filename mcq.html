@@ -94,3 +94,15 @@ document.getElementById("result").innerHTML=
 
 </body>
 </html>
+<script type="module">
+
+import { saveQuizScore }
+from "./quiz-save.js";
+
+window.saveResult = function(score, total) {
+
+    saveQuizScore(score, total);
+
+};
+
+</script>
