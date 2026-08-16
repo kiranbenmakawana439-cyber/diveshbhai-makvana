@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Student Login</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🔐 Student Login</h1>
+
+<p>12th Commerce Study Hub</p>
+
+</header>
+
+<section class="hero">
+
+<input
+type="email"
+id="email"
+placeholder="Enter Email">
+
+<br><br>
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+<br><br>
+
+<button onclick="signup()">
+Create Account
+</button>
+
+<button onclick="login()">
+Login
+</button>
+
+<p id="message"></p>
+
+</section>
+
+<script type="module">
+
+import { auth } from "./firebase-config.js";
+
+import {
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+window.signup = async function(){
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+try{
+
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+document.getElementById("message").innerHTML =
+"✅ Account created successfully!";
+
+}catch(error){
+
+document.getElementById("message").innerHTML =
+"❌ " + error.message;
+
+}
+
+};
+
+
+window.login = async function(){
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+document.getElementById("message").innerHTML =
+"✅ Login successful!";
+
+window.location.href="dashboard.html";
+
+}catch(error){
+
+document.getElementById("message").innerHTML =
+"❌ Invalid email or password.";
+
+}
+
+};
+
+</script>
+
+</body>
+</html>
